@@ -60,7 +60,11 @@ class NF_Fields_ListCountry extends NF_Abstracts_List
             $options[ $key ][ 'selected' ] = 1;
         }
 
-        return $options;
+	    uasort( $options, function ( $a, $b ) {
+		    return strcasecmp( $a['label'], $b['label'] );
+	    } );
+
+	    return array_values( $options );
     }
 
     public function filter_options_preview( $field_settings )
